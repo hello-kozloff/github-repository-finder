@@ -21,32 +21,34 @@ class SearchPage extends PureComponent<IProps, IState> {
   }
 
   componentDidMount() {
-    this.fetchQuery();
-  }
-
-  fetchQuery() {
     const { location } = this.props;
     const query = new URLSearchParams(location.search).get('q');
 
-    if (query !== null) {
-      this.setState({
-        isLoading: true
-      });
+    query && this.fetchQuery(query);
+  }
 
-      fetch(`https://api.github.com/search/repositories?q=${query}`)
-        .then((response) => response.json())
-        .then((response) => {
-          this.setState({
-            isLoading: false,
-            items: response.items
-          });
-        })
-        .catch(() => {
-          this.setState({
-            isLoading: false
-          });
+  handleChangeForm = (value: string) => {
+    this.fetchQuery(value);
+  };
+
+  fetchQuery(query: string) {
+    this.setState({
+      isLoading: true
+    });
+
+    fetch(`https://api.github.com/search/repositories?q=${query}`)
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({
+          isLoading: false,
+          items: response.items
         });
-    }
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false
+        });
+      });
   }
 
   render() {
@@ -66,6 +68,7 @@ class SearchPage extends PureComponent<IProps, IState> {
         <div className={styleSheet('header')}>
           <SearchForm
             search={query && query || ''}
+            onChange={this.handleChangeForm}
           />
         </div>
 

@@ -8,7 +8,8 @@ import { Input, PageHeader } from '../../components';
  * @constructor
  */
 const SearchForm: FunctionComponent<IProps> = ({
-  search
+  search,
+  onChange
 }: IProps) => {
   const history = useHistory();
   const [searchText, setSearchText] = useState(search || '');
@@ -30,6 +31,8 @@ const SearchForm: FunctionComponent<IProps> = ({
       pathname: '/search',
       search: `?q=${value}`
     });
+
+    onChange(value);
   }
 
   return (
