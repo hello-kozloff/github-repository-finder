@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={SearchPage} />
+        <Route path="/search" component={SearchPage} />
       </Switch>
     </BrowserRouter>
   );
