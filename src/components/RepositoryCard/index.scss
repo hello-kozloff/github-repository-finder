@@ -1,0 +1,53 @@
+@import "../../sass/abstracts/variables";
+
+.repository-card {
+  display: block;
+
+  padding: 12px 16px;
+  box-sizing: border-box;
+
+  text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    .repository-card__name {
+      color: rgba($color-black, .5);
+    }
+  }
+}
+
+.repository-card__name {
+  color: $color-black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.repository-card__description {
+  margin-top: 5px;
+  color: rgba($color-black, .5);
+}
+
+.repository-card__owner {
+  display: flex;
+  align-items: center;
+
+  padding-top: 5px;
+  margin-top: 15px;
+
+  border-top: 1px solid $color-border;
+}
+
+.repository-card__owner-avatar {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.repository-card__owner-login {
+  color: $color-black;
+  font-size: 12px;
+  font-weight: bold;
+}
