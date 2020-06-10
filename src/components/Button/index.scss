@@ -1,0 +1,21 @@
+@import "../../sass/abstracts/variables";
+
+.button {
+  padding: 6px 12px;
+
+  color: $color-white;
+  font-size: 14px;
+  line-height: 20px;
+
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: $color-primary;
+
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-primary, 5%);
+  }
+}
