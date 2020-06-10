@@ -5,6 +5,7 @@ import './index.scss';
 
 import SearchForm from '../../forms/SearchForm';
 import { Navigation, RepositoryCard } from '../../components';
+import { IRepository } from '../../components/RepositoryCard/types';
 
 /**
  * Search Page
@@ -13,66 +14,83 @@ class SearchPage extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      isLoading: false,
+      items: []
+    };
+  }
+
+  componentDidMount() {
+    const { location } = this.props;
+    const query = new URLSearchParams(location.search).get('q');
+
+    if (query !== null) {
+      this.setState({
+        isLoading: true
+      });
+
+      fetch(`https://api.github.com/search/repositories?q=${query}`)
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response.items);
+          this.setState({
+            isLoading: false,
+            items: response.items
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+
+          this.setState({
+            isLoading: false
+          });
+        });
+    }
   }
 
   render() {
     const { location } = this.props;
+    const { isLoading, items } = this.state;
+
     const query = new URLSearchParams(location.search).get('q');
     const styleSheet = block('search-page');
+
+    console.log('loading', isLoading);
+    console.log(items);
 
     return (
       <div className={styleSheet()}>
 
-        <div className={styleSheet('header')}>
+        <div className={styleSheet('navigation')}>
           <Navigation />
-          <SearchForm search={query && query || ''} />
+        </div>
+
+        <div className={styleSheet('header')}>
+          <SearchForm
+            search={query && query || ''}
+          />
         </div>
 
         <div className={styleSheet('content')}>
 
           <h2 className={styleSheet('title')}>
-            Найдено по запросу 'test':
+            Найдено по запросу '{query}':
           </h2>
 
-          <div className={styleSheet('card')}>
-            <RepositoryCard
-              url="https://github.com/dtrupenn/Tetris"
-              name="Tetris"
-              description="A C implementation of Tetris using Pennsim through LC4"
-              owner={{
-                id: 583923,
-                login: 'Kozloff',
-                avatarUrl: 'https://secure.gravatar.com/avatar/e7956084e75f239de85d3a31bc172ace?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png'
-              }}
-            />
-          </div>
-
-          <div className={styleSheet('card')}>
-            <RepositoryCard
-              url="https://github.com/dtrupenn/Tetris"
-              name="Tetris"
-              description="A C implementation of Tetris using Pennsim through LC4"
-              owner={{
-                id: 583923,
-                login: 'Kozloff',
-                avatarUrl: 'https://secure.gravatar.com/avatar/e7956084e75f239de85d3a31bc172ace?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png'
-              }}
-            />
-          </div>
-
-          <div className={styleSheet('card')}>
-            <RepositoryCard
-              url="https://github.com/dtrupenn/Tetris"
-              name="Tetris"
-              description="A C implementation of Tetris using Pennsim through LC4"
-              owner={{
-                id: 583923,
-                login: 'Kozloff',
-                avatarUrl: 'https://secure.gravatar.com/avatar/e7956084e75f239de85d3a31bc172ace?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png'
-              }}
-            />
-          </div>
+          {items.map((item: IRepository) => (
+            <div key={item.id} className={styleSheet('card')}>
+              <RepositoryCard
+                html_url={item.html_url}
+                name={item.name}
+                description={item.description}
+                owner={{
+                  id: item.owner.id,
+                  login: item.owner.login,
+                  avatar_url: item.owner.avatar_url
+                }}
+              />
+            </div>
+          ))}
 
         </div>
       </div>

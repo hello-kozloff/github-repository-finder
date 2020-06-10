@@ -5,7 +5,7 @@ import './index.scss';
 
 /**
  * Repository Card Component
- * @param url
+ * @param html_url
  * @param name
  * @param description
  * @param ownerLogin
@@ -13,18 +13,18 @@ import './index.scss';
  * @constructor
  */
 const RepositoryCard: FunctionComponent<IProps> = ({
-  url,
+  html_url,
   name,
   description,
   owner: {
     login: ownerLogin,
-    avatarUrl: ownerAvatarUrl
+    avatar_url: ownerAvatarUrl
   }
 }: IProps) => {
   const styleSheet = block('repository-card');
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className={styleSheet()}>
+    <a href={html_url} target="_blank" rel="noopener noreferrer" className={styleSheet()}>
 
       <strong className={styleSheet('name')}>
         {name}
