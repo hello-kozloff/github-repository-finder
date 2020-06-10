@@ -1,0 +1,52 @@
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
+
+.favorites-page__content {
+  @include container();
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.favorites-page__title {
+  margin-bottom: 25px;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.favorites-page__card:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.favorites-page__menu {
+  position: absolute;
+  z-index: 100;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  @include container();
+  display: flex;
+
+  border-bottom: 1px solid rgba($color-border, .5);
+}
+
+.favorites-page__menu-item {
+  padding: 15px 0;
+
+  height: 100%;
+
+  color: $color-black;
+  text-decoration: none;
+
+  border-bottom: 1px solid transparent;
+
+  &:not(:last-child) {
+    margin-right: 25px;
+  }
+
+  &.active {
+    border-color: $color-border;
+  }
+}
