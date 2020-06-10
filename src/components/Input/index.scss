@@ -20,6 +20,10 @@
       opacity: 0;
     }
   }
+
+  &:disabled {
+    opacity: .5;
+  }
 }
 
 .input_variant {

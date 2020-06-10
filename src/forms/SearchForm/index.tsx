@@ -12,7 +12,8 @@ import './index.scss';
 const SearchForm: FunctionComponent<IProps> = ({
   search,
   onChange,
-  onSubmit
+  onSubmit,
+  isLoading
 }: IProps) => {
   const history = useHistory();
   const [searchText, setSearchText] = useState(search || '');
@@ -57,12 +58,13 @@ const SearchForm: FunctionComponent<IProps> = ({
             value={searchText}
             placeholder="Введите название репозитория"
             required
+            disabled={isLoading}
             onChange={handleChangeInput}
           />
         </div>
 
         <div className={styleSheet('submit')}>
-          <Button type="submit">
+          <Button type="submit" disabled={isLoading}>
             Показать
           </Button>
         </div>

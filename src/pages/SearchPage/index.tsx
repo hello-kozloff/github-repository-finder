@@ -92,6 +92,7 @@ class SearchPage extends PureComponent<IProps, IState> {
             search={query && query || ''}
             onChange={this.handleChangeForm}
             onSubmit={this.handleSubmitForm}
+            isLoading={isLoading}
           />
         </div>
 
