@@ -11,7 +11,8 @@ import './index.scss';
  */
 const SearchForm: FunctionComponent<IProps> = ({
   search,
-  onChange
+  onChange,
+  onSubmit
 }: IProps) => {
   const history = useHistory();
   const [searchText, setSearchText] = useState(search || '');
@@ -34,13 +35,15 @@ const SearchForm: FunctionComponent<IProps> = ({
       pathname: '/search',
       search: `?q=${value}`
     });
+
+    onChange && onChange(value);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (searchText.length > 0) {
-      onChange(searchText);
+      onSubmit(searchText);
     }
   }
 
