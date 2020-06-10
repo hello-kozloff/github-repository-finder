@@ -28,7 +28,11 @@ class SearchPage extends PureComponent<IProps, IState> {
   }
 
   handleChangeForm = (value: string) => {
-    this.fetchQuery(value);
+    const { isLoading } = this.state;
+
+    if (!isLoading) {
+      this.fetchQuery(value);
+    }
   };
 
   fetchQuery(query: string) {
