@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { block } from 'bem-cn';
 import { IProps, IState } from './types';
 import './index.scss';
@@ -10,7 +10,7 @@ import { IRepository } from '../../components/RepositoryCard/types';
 /**
  * Search Page
  */
-class SearchPage extends Component<IProps, IState> {
+class SearchPage extends PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
@@ -21,6 +21,10 @@ class SearchPage extends Component<IProps, IState> {
   }
 
   componentDidMount() {
+    this.fetchQuery();
+  }
+
+  fetchQuery() {
     const { location } = this.props;
     const query = new URLSearchParams(location.search).get('q');
 
@@ -32,15 +36,12 @@ class SearchPage extends Component<IProps, IState> {
       fetch(`https://api.github.com/search/repositories?q=${query}`)
         .then((response) => response.json())
         .then((response) => {
-          console.log(response.items);
           this.setState({
             isLoading: false,
             items: response.items
           });
         })
-        .catch((error) => {
-          console.log(error);
-
+        .catch(() => {
           this.setState({
             isLoading: false
           });
@@ -54,9 +55,6 @@ class SearchPage extends Component<IProps, IState> {
 
     const query = new URLSearchParams(location.search).get('q');
     const styleSheet = block('search-page');
-
-    console.log('loading', isLoading);
-    console.log(items);
 
     return (
       <div className={styleSheet()}>
@@ -73,9 +71,17 @@ class SearchPage extends Component<IProps, IState> {
 
         <div className={styleSheet('content')}>
 
-          <h2 className={styleSheet('title')}>
-            Найдено по запросу '{query}':
-          </h2>
+          {items.length && (
+            isLoading ? (
+              <h2 className={styleSheet('title')}>
+                Идет загрузка...
+              </h2>
+            ) : (
+              <h2 className={styleSheet('title')}>
+                Найдено по запросу '{query}':
+              </h2>
+            )
+          ) || null}
 
           {items.map((item: IRepository) => (
             <div key={item.id} className={styleSheet('card')}>
