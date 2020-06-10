@@ -5,11 +5,11 @@ import React, { FunctionComponent } from 'react';
  * @constructor
  */
 const SearchPage: FunctionComponent = () => {
-    return (
-        <div>
-            <h1>SearchPage</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>SearchPage</h1>
+    </div>
+  );
 };
 
 export default SearchPage;
