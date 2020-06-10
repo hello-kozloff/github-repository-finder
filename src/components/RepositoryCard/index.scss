@@ -5,6 +5,7 @@
 
   padding: 12px;
   border: 1px solid rgba($color-border, .5);
+  border-radius: 3px;
   box-sizing: border-box;
 
   text-decoration: none;
@@ -12,8 +13,10 @@
 
   &:hover,
   &:focus {
+    border: 1px solid rgba($color-border, 1);
+
     .repository-card__name {
-      color: rgba($color-black, .5);
+      color: $color-primary;
     }
   }
 }
