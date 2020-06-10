@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import { IProps } from './types';
 import { Input, PageHeader } from '../../components';
 
@@ -9,6 +10,7 @@ import { Input, PageHeader } from '../../components';
 const SearchForm: FunctionComponent<IProps> = ({
   search
 }: IProps) => {
+  const history = useHistory();
   const [searchText, setSearchText] = useState(search || '');
 
   /**
@@ -23,6 +25,11 @@ const SearchForm: FunctionComponent<IProps> = ({
     } = event;
 
     setSearchText(value);
+
+    history.push({
+      pathname: '/search',
+      search: `?q=${value}`
+    });
   }
 
   return (
