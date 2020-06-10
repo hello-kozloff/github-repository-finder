@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { useLocation } from 'react-router-dom';
 import { block } from 'bem-cn';
 import './index.scss';
 
@@ -9,7 +10,8 @@ import { Navigation, RepositoryCard } from '../../components';
  * Search Page Component
  * @constructor
  */
-const SearchPage: FunctionComponent = () => {
+const SearchPage: FunctionComponent = (props) => {
+  const query = new URLSearchParams(useLocation().search).get('q');
   const styleSheet = block('search-page');
 
   return (
@@ -17,7 +19,7 @@ const SearchPage: FunctionComponent = () => {
 
       <div className={styleSheet('header')}>
         <Navigation />
-        <SearchForm search="test" />
+        <SearchForm search={query && query || ''} />
       </div>
 
       <div className={styleSheet('content')}>
