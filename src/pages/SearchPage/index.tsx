@@ -3,7 +3,7 @@ import { block } from 'bem-cn';
 import './index.scss';
 
 import SearchForm from '../../forms/SearchForm';
-import RepositoryCard from '../../components/RepositoryCard';
+import { Navigation, RepositoryCard } from '../../components';
 
 /**
  * Search Page Component
@@ -16,6 +16,7 @@ const SearchPage: FunctionComponent = () => {
     <div className={styleSheet()}>
 
       <div className={styleSheet('header')}>
+        <Navigation />
         <SearchForm search="test" />
       </div>
 
