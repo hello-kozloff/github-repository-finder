@@ -26,10 +26,7 @@ const SearchForm: FunctionComponent<IProps> = ({
   }
 
   return (
-    <PageHeader
-      title="Поиск репозиториев GitHub"
-      subtitle="Находи, добавляй в закладки, изучай!"
-    >
+    <PageHeader title="Поиск репозиториев GitHub" subtitle="Введите название репозитория">
       <Input
         variant="primary"
         value={searchText}
