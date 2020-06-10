@@ -1,0 +1,18 @@
+@import "../../sass/abstracts/mixins";
+
+.search-page__content {
+  @include container();
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.search-page__title {
+  margin-bottom: 25px;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.search-page__card:not(:last-child) {
+  margin-bottom: 15px;
+}
