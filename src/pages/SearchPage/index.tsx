@@ -109,20 +109,22 @@ class SearchPage extends PureComponent<IProps, IState> {
             )
           ) || null}
 
-          {items.map((item: IRepository) => (
-            <div key={item.id} className={styleSheet('card')}>
-              <RepositoryCard
-                html_url={item.html_url}
-                name={item.name}
-                description={item.description}
-                owner={{
-                  id: item.owner.id,
-                  login: item.owner.login,
-                  avatar_url: item.owner.avatar_url
-                }}
-              />
-            </div>
-          ))}
+          <div className={styleSheet('grid')}>
+            {items.map((item: IRepository) => (
+              <div key={item.id} className={styleSheet('card')}>
+                <RepositoryCard
+                  html_url={item.html_url}
+                  name={item.name}
+                  description={item.description}
+                  owner={{
+                    id: item.owner.id,
+                    login: item.owner.login,
+                    avatar_url: item.owner.avatar_url
+                  }}
+                />
+              </div>
+            ))}
+          </div>
 
         </div>
       </div>

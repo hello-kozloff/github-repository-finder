@@ -13,6 +13,30 @@
   font-weight: bold;
 }
 
-.search-page__card:not(:last-child) {
-  margin-bottom: 15px;
+.search-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+
+  @media screen and (max-width: 374px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.search-page__card {
+  .repository-card {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    .repository-card__description {
+      margin-bottom: 10px;
+    }
+
+    .repository-card__owner {
+      margin-top: auto;
+    }
+  }
 }
