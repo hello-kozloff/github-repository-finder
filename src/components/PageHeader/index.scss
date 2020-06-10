@@ -1,0 +1,30 @@
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
+
+.page-header {
+  padding: 120px 0 60px 0;
+  border-bottom: 1px solid $color-border;
+  background-color: $color-background;
+}
+
+.page-header__container {
+  @include container();
+}
+
+.page-header__title {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 140%;
+}
+
+.page-header__subtitle {
+  margin-top: 10px;
+
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 140%;
+}
+
+.page-header__content {
+  margin-top: 25px;
+}
