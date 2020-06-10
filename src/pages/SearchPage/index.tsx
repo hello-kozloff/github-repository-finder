@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import SearchForm from '../../forms/SearchForm';
 
 /**
  * Search Page Component
@@ -7,7 +8,7 @@ import React, { FunctionComponent } from 'react';
 const SearchPage: FunctionComponent = () => {
   return (
     <div>
-      <h1>SearchPage</h1>
+      <SearchForm />
     </div>
   );
 };
