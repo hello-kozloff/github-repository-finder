@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
 import './index.scss';
 
@@ -13,6 +14,10 @@ const FavoritesPage: FunctionComponent = () => {
 
   return (
     <div className={styleSheet()}>
+
+      <Helmet>
+        <title>Github Finder / Израбнные репозитории</title>
+      </Helmet>
 
       <div className={styleSheet('header')}>
         <PageHeader title="Github Finder" subtitle="Находи, добавляй в закладки, изучай!">

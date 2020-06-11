@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
 import { IProps, IState } from './types';
 import './index.scss';
@@ -82,6 +83,10 @@ class SearchPage extends PureComponent<IProps, IState> {
 
     return (
       <div className={styleSheet()}>
+
+        <Helmet>
+          <title>Github Finder / Поиск</title>
+        </Helmet>
 
         <div className={styleSheet('navigation')}>
           <Navigation />
