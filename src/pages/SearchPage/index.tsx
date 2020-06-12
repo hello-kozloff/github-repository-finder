@@ -4,7 +4,7 @@ import { block } from 'bem-cn';
 import { Navigation, RepositoryCard, RecentSearch } from '../../components';
 import SearchForm from '../../forms/SearchForm';
 import { IProps, IState } from './types';
-import { IRepository } from '../../components/RepositoryCard/types';
+import { IRepository } from '../../redux/types/repository';
 import './index.scss';
 
 /**
