@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { block } from 'bem-cn';
+import { Button } from '..';
 import './index.scss';
 
 /**
@@ -20,6 +21,16 @@ const Navigation: FunctionComponent = () => {
       <NavLink exact to="/search" className={styleSheet('link')}>
         Поиск
       </NavLink>
+
+      <div className={styleSheet('auth')}>
+
+        <div className={styleSheet('button')}>
+          <Button>
+            Войти
+          </Button>
+        </div>
+
+      </div>
 
     </nav>
   );

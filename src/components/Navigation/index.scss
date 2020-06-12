@@ -10,13 +10,15 @@
   left: 0;
 
   @include container();
+  padding-left: 0;
+
   display: flex;
 
   border-bottom: 1px solid rgba($color-border, .5);
 }
 
 .navigation__link {
-  padding: 15px 0;
+  padding: 15px 16px;
 
   height: 100%;
 
@@ -25,11 +27,18 @@
 
   border-bottom: 1px solid transparent;
 
-  &:not(:last-child) {
-    margin-right: 25px;
-  }
-
   &.active {
-    border-color: $color-border;
+    border-color: $color-primary;
   }
+}
+
+.navigation__auth {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+}
+
+.navigation__button:not(:first-child) {
+  margin-left: 5px;
 }
