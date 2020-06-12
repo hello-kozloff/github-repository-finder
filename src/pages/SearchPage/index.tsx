@@ -104,8 +104,8 @@ class SearchPage extends PureComponent<IProps, IState> {
 
         <div className={styleSheet('content')}>
 
-          <div className={styleSheet('search')}>
-            {items.length && (
+          {items.length && (
+            <div className={styleSheet('search')}>
               <SectionHeader title={title}>
                 <RepositoriesGrid>
                   {items.map((item: IRepository) => (
@@ -125,8 +125,8 @@ class SearchPage extends PureComponent<IProps, IState> {
                   ))}
                 </RepositoriesGrid>
               </SectionHeader>
-            ) || null}
-          </div>
+            </div>
+          ) || null}
 
           <div className={styleSheet('recent-search')}>
             <RecentSearch />
