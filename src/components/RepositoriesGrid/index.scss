@@ -1,0 +1,31 @@
+.repositories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+
+  @media screen and (max-width: 374px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.repositories-grid__card {
+
+  .repository-card,
+  .repository-card__box {
+    height: 100%;
+  }
+
+  .repository-card__box {
+    display: flex;
+    flex-direction: column;
+
+    .repository-card__description {
+      margin-bottom: 10px;
+    }
+
+    .repository-card__owner {
+      margin-top: auto;
+    }
+  }
+}
