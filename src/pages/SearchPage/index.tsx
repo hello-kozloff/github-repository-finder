@@ -5,7 +5,7 @@ import { IProps, IState } from './types';
 import './index.scss';
 
 import SearchForm from '../../forms/SearchForm';
-import { Navigation, RepositoryCard } from '../../components';
+import { Navigation, RepositoryCard, RecentSearch } from '../../components';
 import { IRepository } from '../../components/RepositoryCard/types';
 
 /**
@@ -115,21 +115,27 @@ class SearchPage extends PureComponent<IProps, IState> {
             )
           ) || null}
 
-          <div className={styleSheet('grid')}>
-            {items.map((item: IRepository) => (
-              <div key={item.id} className={styleSheet('card')}>
-                <RepositoryCard
-                  html_url={item.html_url}
-                  name={item.name}
-                  description={item.description}
-                  owner={{
-                    id: item.owner.id,
-                    login: item.owner.login,
-                    avatar_url: item.owner.avatar_url
-                  }}
-                />
-              </div>
-            ))}
+          {items.length ? (
+            <div className={styleSheet('grid')}>
+              {items.map((item: IRepository) => (
+                <div key={item.id} className={styleSheet('card')}>
+                  <RepositoryCard
+                    html_url={item.html_url}
+                    name={item.name}
+                    description={item.description}
+                    owner={{
+                      id: item.owner.id,
+                      login: item.owner.login,
+                      avatar_url: item.owner.avatar_url
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <div className={styleSheet('recent-search')}>
+            <RecentSearch />
           </div>
 
         </div>
