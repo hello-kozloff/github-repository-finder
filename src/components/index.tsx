@@ -8,3 +8,5 @@ export { default as Button } from './Button';
 export { default as RecentSearch } from './RecentSearch';
 export { default as RepositoriesGrid } from './RepositoriesGrid';
 export { default as SectionHeader } from './SectionHeader';
+// eslint-disable-next-line import/no-cycle
+export { default as Features } from './Features';
