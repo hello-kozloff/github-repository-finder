@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { IProps, IState } from './types';
-import './index.scss';
-
-import SearchForm from '../../forms/SearchForm';
 import { Navigation, RepositoryCard, RecentSearch } from '../../components';
+import SearchForm from '../../forms/SearchForm';
+import { IProps, IState } from './types';
 import { IRepository } from '../../components/RepositoryCard/types';
+import './index.scss';
 
 /**
  * Search Page
