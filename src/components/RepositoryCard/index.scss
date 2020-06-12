@@ -1,6 +1,10 @@
 @import "../../sass/abstracts/variables";
 
 .repository-card {
+  position: relative;
+}
+
+.repository-card__box {
   display: block;
 
   padding: 12px;
@@ -22,6 +26,8 @@
 }
 
 .repository-card__name {
+  padding-right: 52px;
+
   color: $color-black;
   font-size: 18px;
   font-weight: bold;
@@ -29,6 +35,8 @@
 }
 
 .repository-card__description {
+  padding-right: 52px;
+
   margin-top: 5px;
   color: rgba($color-black, .5);
   line-height: 140%;
@@ -56,4 +64,29 @@
   color: $color-black;
   font-size: 12px;
   font-weight: bold;
+}
+
+.repository-card__favorite {
+  position: absolute;
+  z-index: 100;
+
+  top: 0;
+  right: 0;
+
+  padding: 12px;
+  box-sizing: border-box;
+
+  border: 1px solid $color-border;
+  background-color: $color-white;
+
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($color-border, .3);
+  }
 }
