@@ -8,9 +8,11 @@ export default {
 
 export const ToStorybook = () => (
   <RepositoryCard
-    html_url="https://github.com/dtrupenn/Tetris"
+    id={0}
     name="Tetris"
+    full_name="Tetris"
     description="A C implementation of Tetris using Pennsim through LC4"
+    html_url="https://github.com/dtrupenn/Tetris"
     owner={{
       id: 583923,
       login: 'Kozloff',
