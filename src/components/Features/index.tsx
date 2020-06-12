@@ -21,23 +21,25 @@ const Features: FunctionComponent<IProps> = ({
   return (
     <div className={styleSheet()}>
       <SectionHeader title="Избранные репозитории:" description={description}>
-        <RepositoriesGrid>
-          {features.map((repository: IRepository) => (
-            <RepositoryCard
-              key={repository.id}
-              id={repository.id}
-              name={repository.name}
-              full_name={repository.full_name}
-              description={repository.description}
-              html_url={repository.html_url}
-              owner={{
-                id: repository.owner.id,
-                login: repository.owner.login,
-                avatar_url: repository.owner.avatar_url
-              }}
-            />
-          ))}
-        </RepositoriesGrid>
+        {features.length !== 0 ? (
+          <RepositoriesGrid>
+            {features.map((repository: IRepository) => (
+              <RepositoryCard
+                key={repository.id}
+                id={repository.id}
+                name={repository.name}
+                full_name={repository.full_name}
+                description={repository.description}
+                html_url={repository.html_url}
+                owner={{
+                  id: repository.owner.id,
+                  login: repository.owner.login,
+                  avatar_url: repository.owner.avatar_url
+                }}
+              />
+            ))}
+          </RepositoriesGrid>
+        ) : null}
       </SectionHeader>
     </div>
   );

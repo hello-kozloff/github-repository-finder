@@ -18,9 +18,9 @@ export interface IProps {
 
   /**
    |--------------------------------------------------------------------------
-   | Children content. (Require)
+   | Children content. (Not require)
    |--------------------------------------------------------------------------
    */
-  children: ReactNode;
+  children?: ReactNode;
 
 }

@@ -20,23 +20,25 @@ const RecentSearch: FunctionComponent<IProps> = ({
   return (
     <section className={styleSheet()}>
       <SectionHeader title="Последние результаты:" description={description}>
-        <RepositoriesGrid>
-          {repositories.map((repository: IRepository) => (
-            <RepositoryCard
-              key={repository.id}
-              id={repository.id}
-              name={repository.name}
-              full_name={repository.full_name}
-              description={repository.description}
-              html_url={repository.html_url}
-              owner={{
-                id: repository.owner.id,
-                login: repository.owner.login,
-                avatar_url: repository.owner.avatar_url
-              }}
-            />
-          ))}
-        </RepositoriesGrid>
+        {repositories.length !== 0 ? (
+          <RepositoriesGrid>
+            {repositories.map((repository: IRepository) => (
+              <RepositoryCard
+                key={repository.id}
+                id={repository.id}
+                name={repository.name}
+                full_name={repository.full_name}
+                description={repository.description}
+                html_url={repository.html_url}
+                owner={{
+                  id: repository.owner.id,
+                  login: repository.owner.login,
+                  avatar_url: repository.owner.avatar_url
+                }}
+              />
+            ))}
+          </RepositoriesGrid>
+        ) : null}
       </SectionHeader>
     </section>
   );

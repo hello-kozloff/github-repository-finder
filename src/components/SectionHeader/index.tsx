@@ -30,9 +30,11 @@ const SectionHeader: FunctionComponent<IProps> = ({
         </p>
       ) : null}
 
-      <div className={styleSheet('content')}>
-        {children}
-      </div>
+      {children ? (
+        <div className={styleSheet('content')}>
+          {children}
+        </div>
+      ) : null}
 
     </div>
   );
