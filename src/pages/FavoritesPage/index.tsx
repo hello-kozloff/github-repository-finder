@@ -1,14 +1,21 @@
 import React, { FunctionComponent } from 'react';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { PageHeader, Navigation } from '../../components';
+import { PageHeader, Navigation, RepositoryCard } from '../../components';
+import { getFeaturesState } from '../../redux/reducers/features';
+import IStore from '../../redux/types/store';
+import { IRepository } from '../../redux/types/repository';
+import { IProps } from './types';
 import './index.scss';
 
 /**
  * Favorites Page
  * @constructor
  */
-const FavoritesPage: FunctionComponent = () => {
+const FavoritesPage: FunctionComponent<IProps> = ({
+  features
+}: IProps) => {
   const styleSheet = block('favorites-page');
 
   return (
@@ -30,9 +37,28 @@ const FavoritesPage: FunctionComponent = () => {
           Избранные репозитории
         </h2>
 
-        <div className={styleSheet('card')}>
-          card
-        </div>
+        {!features.length ? (
+          <p className={styleSheet('description')}>
+            В поиске вы можете добавить избранные репозитории!
+          </p>
+        ) : null}
+
+        {features.map((feature: IRepository) => (
+          <div key={feature.id} className={styleSheet('card')}>
+            <RepositoryCard
+              id={feature.id}
+              name={feature.name}
+              full_name={feature.full_name}
+              description={feature.description}
+              html_url={feature.html_url}
+              owner={{
+                id: feature.owner.id,
+                login: feature.owner.login,
+                avatar_url: feature.owner.avatar_url
+              }}
+            />
+          </div>
+        ))}
 
       </div>
 
@@ -40,4 +66,10 @@ const FavoritesPage: FunctionComponent = () => {
   );
 };
 
-export default FavoritesPage;
+const mapStateToProps = (state: IStore) => {
+  return {
+    features: getFeaturesState(state).repositories
+  };
+};
+
+export default connect(mapStateToProps)(FavoritesPage);
