@@ -30,4 +30,11 @@ export interface IProps {
    */
   owner: IRepository['owner'];
 
+  /**
+   |--------------------------------------------------------------------------
+   | Add repository in Recent Search. (React redux)
+   |--------------------------------------------------------------------------
+   */
+  addRepository: (repository: IRepository) => void;
+
 }
