@@ -32,7 +32,7 @@ const RecentSearch: FunctionComponent<IProps> = ({
         <div className={styleSheet('grid')}>
 
           {repositories.map((repository: IRepository) => (
-            <div key={repository.id} className={styleSheet('item')}>
+            <div key={repository.id} className={styleSheet('card')}>
               <RepositoryCard
                 id={repository.id}
                 name={repository.name}
