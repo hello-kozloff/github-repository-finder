@@ -3,6 +3,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { block } from 'bem-cn';
 import { addRepository } from '../../redux/actions/recentSearch';
+import { addFeatureRepository } from '../../redux/actions/features';
 import { IRepository } from '../../redux/types/repository';
 import { IProps } from './types';
 import './index.scss';
@@ -18,6 +19,7 @@ import './index.scss';
  * @param ownerLogin
  * @param ownerAvatarUrl
  * @param addRepository
+ * @param addFeatureRepository
  * @constructor
  */
 const RepositoryCard: FunctionComponent<IProps> = ({
@@ -32,7 +34,9 @@ const RepositoryCard: FunctionComponent<IProps> = ({
     avatar_url: ownerAvatarUrl
   },
   // eslint-disable-next-line no-shadow
-  addRepository
+  addRepository,
+  // eslint-disable-next-line no-shadow
+  addFeatureRepository
 }: IProps) => {
   const styleSheet = block('repository-card');
 
@@ -53,10 +57,31 @@ const RepositoryCard: FunctionComponent<IProps> = ({
     addRepository(repository);
   }
 
+  function handleClickFavorite() {
+    const repository: IRepository = {
+      id,
+      name,
+      full_name,
+      description,
+      html_url,
+      owner: {
+        id: ownerId,
+        login: ownerLogin,
+        avatar_url: ownerAvatarUrl
+      }
+    };
+
+    addFeatureRepository(repository);
+  }
+
   return (
     <div className={styleSheet()}>
 
-      <button type="button" className={styleSheet('favorite')}>
+      <button
+        type="button"
+        className={styleSheet('favorite')}
+        onClick={handleClickFavorite}
+      >
         <svg height="16" className="octicon octicon-star-fill" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
           <path fillRule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
         </svg>
@@ -99,7 +124,8 @@ const RepositoryCard: FunctionComponent<IProps> = ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    addRepository: bindActionCreators(addRepository, dispatch)
+    addRepository: bindActionCreators(addRepository, dispatch),
+    addFeatureRepository: bindActionCreators(addFeatureRepository, dispatch)
   };
 };
 
