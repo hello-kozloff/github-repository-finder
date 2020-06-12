@@ -1,9 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { PageHeader, Navigation, RecentSearch, Features } from '../../components';
+import { PageHeader, Navigation, RecentSearch, Features, SectionWrapper } from '../../components';
 import { IProps } from './types';
-import './index.scss';
 
 /**
  * Home Page
@@ -25,18 +24,17 @@ const HomePage: FunctionComponent<IProps> = () => {
         </PageHeader>
       </div>
 
-      <div className={styleSheet('content')}>
-
-        <div className={styleSheet('recent-search')}>
+      <div className={styleSheet('recent-search')}>
+        <SectionWrapper>
           <RecentSearch />
-        </div>
-
-        <div className={styleSheet('features')}>
-          <Features />
-        </div>
-
+        </SectionWrapper>
       </div>
 
+      <div className={styleSheet('features')}>
+        <SectionWrapper>
+          <Features />
+        </SectionWrapper>
+      </div>
     </div>
   );
 };

@@ -10,3 +10,4 @@ export { default as RepositoriesGrid } from './RepositoriesGrid';
 export { default as SectionHeader } from './SectionHeader';
 // eslint-disable-next-line import/no-cycle
 export { default as Features } from './Features';
+export { default as SectionWrapper } from './SectionWrapper';

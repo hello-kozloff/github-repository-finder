@@ -1,11 +1,17 @@
 import React, { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { Navigation, RepositoryCard, RecentSearch, RepositoriesGrid, SectionHeader } from '../../components';
+import {
+  Navigation,
+  RepositoryCard,
+  RecentSearch,
+  RepositoriesGrid,
+  SectionHeader,
+  SectionWrapper
+} from '../../components';
 import SearchForm from '../../forms/SearchForm';
 import { IProps, IState } from './types';
 import { IRepository } from '../../redux/types/repository';
-import './index.scss';
 
 /**
  * Search Page
@@ -104,32 +110,36 @@ class SearchPage extends PureComponent<IProps, IState> {
 
         <div className={styleSheet('content')}>
 
-          {items.length && (
+          {items.length ? (
             <div className={styleSheet('search')}>
-              <SectionHeader title={title}>
-                <RepositoriesGrid>
-                  {items.map((item: IRepository) => (
-                    <RepositoryCard
-                      key={item.id}
-                      id={item.id}
-                      name={item.name}
-                      full_name={item.full_name}
-                      description={item.description}
-                      html_url={item.html_url}
-                      owner={{
-                        id: item.owner.id,
-                        login: item.owner.login,
-                        avatar_url: item.owner.avatar_url
-                      }}
-                    />
-                  ))}
-                </RepositoriesGrid>
-              </SectionHeader>
+              <SectionWrapper>
+                <SectionHeader title={title}>
+                  <RepositoriesGrid>
+                    {items.map((item: IRepository) => (
+                      <RepositoryCard
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        full_name={item.full_name}
+                        description={item.description}
+                        html_url={item.html_url}
+                        owner={{
+                          id: item.owner.id,
+                          login: item.owner.login,
+                          avatar_url: item.owner.avatar_url
+                        }}
+                      />
+                    ))}
+                  </RepositoriesGrid>
+                </SectionHeader>
+              </SectionWrapper>
             </div>
-          ) || null}
+          ) : null}
 
           <div className={styleSheet('recent-search')}>
-            <RecentSearch />
+            <SectionWrapper>
+              <RecentSearch />
+            </SectionWrapper>
           </div>
 
         </div>

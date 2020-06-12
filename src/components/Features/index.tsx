@@ -20,7 +20,7 @@ const Features: FunctionComponent<IProps> = ({
 
   return (
     <div className={styleSheet()}>
-      <SectionHeader title="Избранные репозитории" description={description}>
+      <SectionHeader title="Избранные репозитории:" description={description}>
         <RepositoriesGrid>
           {features.map((repository: IRepository) => (
             <RepositoryCard
