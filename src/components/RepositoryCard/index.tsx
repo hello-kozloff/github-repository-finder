@@ -1,5 +1,8 @@
 import React, { FunctionComponent } from 'react';
+import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { block } from 'bem-cn';
+import { addRepository } from '../../redux/actions/recentSearch';
 import { IProps } from './types';
 import './index.scss';
 
@@ -24,7 +27,12 @@ const RepositoryCard: FunctionComponent<IProps> = ({
   const styleSheet = block('repository-card');
 
   return (
-    <a href={html_url} target="_blank" rel="noopener noreferrer" className={styleSheet()}>
+    <a
+      href={html_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styleSheet()}
+    >
 
       <strong className={styleSheet('name')}>
         {name}
@@ -52,4 +60,10 @@ const RepositoryCard: FunctionComponent<IProps> = ({
   );
 };
 
-export default RepositoryCard;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    addRepository: bindActionCreators(addRepository, dispatch)
+  };
+};
+
+export default connect(null, mapDispatchToProps)(RepositoryCard);
