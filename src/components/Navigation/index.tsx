@@ -13,12 +13,12 @@ const Navigation: FunctionComponent = () => {
   return (
     <nav className={styleSheet()}>
 
-      <NavLink exact to="/search" className={styleSheet('link')}>
-        Поиск
+      <NavLink exact to="/" className={styleSheet('link')}>
+        Главная
       </NavLink>
 
-      <NavLink exact to="/" className={styleSheet('link')}>
-        Избранные
+      <NavLink exact to="/search" className={styleSheet('link')}>
+        Поиск
       </NavLink>
 
     </nav>
