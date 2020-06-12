@@ -7,11 +7,13 @@ import './index.scss';
  * Section Header Component
  * @param title
  * @param description
+ * @param children
  * @constructor
  */
 const SectionHeader: FunctionComponent<IProps> = ({
   title,
-  description
+  description,
+  children
 }: IProps) => {
   const styleSheet = block('section-header');
 
@@ -24,9 +26,13 @@ const SectionHeader: FunctionComponent<IProps> = ({
 
       {description ? (
         <p className={styleSheet('description')}>
-          Description
+          {description}
         </p>
       ) : null}
+
+      <div className={styleSheet('content')}>
+        {children}
+      </div>
 
     </div>
   );

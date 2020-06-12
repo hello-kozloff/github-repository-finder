@@ -1,0 +1,18 @@
+@import "../../sass/abstracts/variables";
+
+.section-header__heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.section-header__description {
+  margin-top: 15px;
+
+  color: rgba($color-black, .5);
+  font-size: 16px;
+  line-height: 120%;
+}
+
+.section-header__content {
+  margin-top: 25px;
+}
