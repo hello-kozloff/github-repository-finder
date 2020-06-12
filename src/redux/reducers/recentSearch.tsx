@@ -10,9 +10,15 @@ const initialState: IState = {
 export default function recentSearchReducer(state = initialState, action: RecentSearchTypes) {
   switch (action.type) {
     case constants.ADD_REPOSITORY: {
+      const updatedRepositories = [...state.repositories, action.repository];
+
+      if (updatedRepositories.length > 3) {
+        updatedRepositories.shift();
+      }
+
       return {
         ...state,
-        repositories: state.repositories.push(action.repository)
+        repositories: updatedRepositories
       };
     }
 
