@@ -3,28 +3,55 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { block } from 'bem-cn';
 import { addRepository } from '../../redux/actions/recentSearch';
+import { IRepository } from '../../redux/types/repository';
 import { IProps } from './types';
 import './index.scss';
 
 /**
  * Repository Card Component
+ * @param id
  * @param html_url
  * @param name
+ * @param full_name
  * @param description
+ * @param ownerId
  * @param ownerLogin
  * @param ownerAvatarUrl
+ * @param addRepository
  * @constructor
  */
 const RepositoryCard: FunctionComponent<IProps> = ({
-  html_url,
+  id,
   name,
+  full_name,
   description,
+  html_url,
   owner: {
+    id: ownerId,
     login: ownerLogin,
     avatar_url: ownerAvatarUrl
-  }
+  },
+  // eslint-disable-next-line no-shadow
+  addRepository
 }: IProps) => {
   const styleSheet = block('repository-card');
+
+  function handleClick() {
+    const repository: IRepository = {
+      id,
+      name,
+      full_name,
+      description,
+      html_url,
+      owner: {
+        id: ownerId,
+        login: ownerLogin,
+        avatar_url: ownerAvatarUrl
+      }
+    };
+
+    addRepository(repository);
+  }
 
   return (
     <a
@@ -32,6 +59,7 @@ const RepositoryCard: FunctionComponent<IProps> = ({
       target="_blank"
       rel="noopener noreferrer"
       className={styleSheet()}
+      onClick={handleClick}
     >
 
       <strong className={styleSheet('name')}>
