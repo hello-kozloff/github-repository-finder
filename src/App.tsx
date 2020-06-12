@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Pages
 import SearchPage from './pages/SearchPage';
-import FavoritesPage from './pages/FavoritesPage';
+import HomePage from './pages/HomePage';
 
 /**
  * App Component
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/search" component={SearchPage} />
-        <Route exact path="/" component={FavoritesPage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   );

@@ -10,19 +10,19 @@ import { IProps } from './types';
 import './index.scss';
 
 /**
- * Favorites Page
+ * Home Page
  * @constructor
  */
-const FavoritesPage: FunctionComponent<IProps> = ({
+const HomePage: FunctionComponent<IProps> = ({
   features
 }: IProps) => {
-  const styleSheet = block('favorites-page');
+  const styleSheet = block('home-page');
 
   return (
     <div className={styleSheet()}>
 
       <Helmet>
-        <title>Github Finder / Израбнные репозитории</title>
+        <title>Github Finder / Главная</title>
       </Helmet>
 
       <div className={styleSheet('header')}>
@@ -81,4 +81,4 @@ const mapStateToProps = (state: IStore) => {
   };
 };
 
-export default connect(mapStateToProps)(FavoritesPage);
+export default connect(mapStateToProps)(HomePage);

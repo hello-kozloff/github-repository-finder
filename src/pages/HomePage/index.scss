@@ -1,24 +1,24 @@
 @import "../../sass/abstracts/variables";
 @import "../../sass/abstracts/mixins";
 
-.favorites-page__content {
+.home-page__content {
   @include container();
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-.favorites-page__title {
+.home-page__title {
   margin-bottom: 25px;
 
   font-size: 24px;
   font-weight: bold;
 }
 
-.favorites-page__card:not(:last-child) {
+.home-page__card:not(:last-child) {
   margin-bottom: 15px;
 }
 
-.favorites-page__menu {
+.home-page__menu {
   position: absolute;
   z-index: 100;
 
@@ -32,7 +32,7 @@
   border-bottom: 1px solid rgba($color-border, .5);
 }
 
-.favorites-page__menu-item {
+.home-page__menu-item {
   padding: 15px 0;
 
   height: 100%;
@@ -51,6 +51,6 @@
   }
 }
 
-.favorites-page__recent-search {
+.home-page__recent-search {
   margin-bottom: 40px;
 }
