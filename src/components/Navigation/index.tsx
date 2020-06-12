@@ -22,16 +22,6 @@ const Navigation: FunctionComponent = () => {
         Поиск
       </NavLink>
 
-      <div className={styleSheet('auth')}>
-
-        <div className={styleSheet('button')}>
-          <Button>
-            Войти
-          </Button>
-        </div>
-
-      </div>
-
     </nav>
   );
 };
