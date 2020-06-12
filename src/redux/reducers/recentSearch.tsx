@@ -1,4 +1,5 @@
 import { IState, RecentSearchTypes } from '../types/recentSearch';
+import IStore from '../types/store';
 import * as constants from '../constants/recentSearch';
 
 const initialState: IState = {
@@ -19,3 +20,5 @@ export default function recentSearchReducer(state = initialState, action: Recent
       return state;
   }
 }
+
+export const getRecentSearchState = (store: IStore) => store.recentSearch;
