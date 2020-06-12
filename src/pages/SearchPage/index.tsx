@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { Navigation, RepositoryCard, RecentSearch } from '../../components';
+import { Navigation, RepositoryCard, RecentSearch, RepositoriesGrid } from '../../components';
 import SearchForm from '../../forms/SearchForm';
 import { IProps, IState } from './types';
 import { IRepository } from '../../redux/types/repository';
@@ -116,9 +116,10 @@ class SearchPage extends PureComponent<IProps, IState> {
 
           {items.length ? (
             <div className={styleSheet('grid')}>
-              {items.map((item: IRepository) => (
-                <div key={item.id} className={styleSheet('card')}>
+              <RepositoriesGrid>
+                {items.map((item: IRepository) => (
                   <RepositoryCard
+                    key={item.id}
                     id={item.id}
                     name={item.name}
                     full_name={item.full_name}
@@ -130,8 +131,8 @@ class SearchPage extends PureComponent<IProps, IState> {
                       avatar_url: item.owner.avatar_url
                     }}
                   />
-                </div>
-              ))}
+                ))}
+              </RepositoriesGrid>
             </div>
           ) : null}
 

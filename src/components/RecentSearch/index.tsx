@@ -5,7 +5,7 @@ import { getRecentSearchState } from '../../redux/reducers/recentSearch';
 import { IProps } from './types';
 import IStore from '../../redux/types/store';
 import { IRepository } from '../../redux/types/repository';
-import { RepositoryCard } from '..';
+import { RepositoryCard, RepositoriesGrid } from '..';
 import './index.scss';
 
 /**
@@ -30,10 +30,10 @@ const RecentSearch: FunctionComponent<IProps> = ({
         </p>
       ) : (
         <div className={styleSheet('grid')}>
-
-          {repositories.map((repository: IRepository) => (
-            <div key={repository.id} className={styleSheet('card')}>
+          <RepositoriesGrid>
+            {repositories.map((repository: IRepository) => (
               <RepositoryCard
+                key={repository.id}
                 id={repository.id}
                 name={repository.name}
                 full_name={repository.full_name}
@@ -45,9 +45,8 @@ const RecentSearch: FunctionComponent<IProps> = ({
                   avatar_url: repository.owner.avatar_url
                 }}
               />
-            </div>
-          ))}
-
+            ))}
+          </RepositoriesGrid>
         </div>
       )}
 
