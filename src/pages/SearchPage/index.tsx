@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { block } from 'bem-cn';
-import { Navigation, RepositoryCard, RecentSearch, RepositoriesGrid } from '../../components';
+import { Navigation, RepositoryCard, RecentSearch, RepositoriesGrid, SectionHeader } from '../../components';
 import SearchForm from '../../forms/SearchForm';
 import { IProps, IState } from './types';
 import { IRepository } from '../../redux/types/repository';
@@ -80,6 +80,8 @@ class SearchPage extends PureComponent<IProps, IState> {
     const query = new URLSearchParams(location.search).get('q');
     const styleSheet = block('search-page');
 
+    const title = isLoading ? 'Идет загрузка' : `Найдено по запросу ${query}:`;
+
     return (
       <div className={styleSheet()}>
 
@@ -102,39 +104,29 @@ class SearchPage extends PureComponent<IProps, IState> {
 
         <div className={styleSheet('content')}>
 
-          {items.length && (
-            isLoading ? (
-              <h2 className={styleSheet('title')}>
-                Идет загрузка...
-              </h2>
-            ) : (
-              <h2 className={styleSheet('title')}>
-                Найдено по запросу '{query}':
-              </h2>
-            )
-          ) || null}
-
-          {items.length ? (
-            <div className={styleSheet('grid')}>
-              <RepositoriesGrid>
-                {items.map((item: IRepository) => (
-                  <RepositoryCard
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    full_name={item.full_name}
-                    description={item.description}
-                    html_url={item.html_url}
-                    owner={{
-                      id: item.owner.id,
-                      login: item.owner.login,
-                      avatar_url: item.owner.avatar_url
-                    }}
-                  />
-                ))}
-              </RepositoriesGrid>
-            </div>
-          ) : null}
+          <div className={styleSheet('search')}>
+            {items.length && (
+              <SectionHeader title={title}>
+                <RepositoriesGrid>
+                  {items.map((item: IRepository) => (
+                    <RepositoryCard
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      full_name={item.full_name}
+                      description={item.description}
+                      html_url={item.html_url}
+                      owner={{
+                        id: item.owner.id,
+                        login: item.owner.login,
+                        avatar_url: item.owner.avatar_url
+                      }}
+                    />
+                  ))}
+                </RepositoriesGrid>
+              </SectionHeader>
+            ) || null}
+          </div>
 
           <div className={styleSheet('recent-search')}>
             <RecentSearch />
